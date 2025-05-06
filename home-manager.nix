@@ -67,6 +67,8 @@
 
     ## Tools
     rustup
+    gh
+    luajit
 
     # GNOME Stuff
     gdm-settings
