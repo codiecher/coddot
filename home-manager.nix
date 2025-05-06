@@ -28,7 +28,7 @@
   # You should not change this value, even if you update Home Manager. If you do
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
-  home.stateVersion = "24.05"; # Please read the comment before changing.
+  home.stateVersion = "24.11"; # Please read the comment before changing.
 
   # You can also manage environment variables but you will have to manually
   # source
@@ -129,8 +129,6 @@
     wineWowPackages.stagingFull
     winetricks
     prismlauncher
-    r2modman
-    lutris
 
     ## Libraries
     rnnoise-plugin

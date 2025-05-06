@@ -46,7 +46,7 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.05"; # Did you read the comment?
+  system.stateVersion = "24.11"; # Did you read the comment?
 
   ##
   ## SYSTEM ##
@@ -56,8 +56,7 @@
 
   # Add AMD drivers.
   boot.initrd.kernelModules = [
-    "amdgpu"
-    "kvm-intel"
+    "kvm-amd"
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_zen;
@@ -74,10 +73,23 @@
     efi.canTouchEfiVariables = true;
   };
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "codtop"; # Define your hostname.
 
   # Enable networking
   networking.networkmanager.enable = true;
+
+  systemd.services.wpa_supplicant.environment.OPENSSL_CONF =
+    pkgs.writeText "openssl.cnf" ''
+      openssl_conf = openssl_init
+      [openssl_init]
+      ssl_conf = ssl_sect
+      [ssl_sect]
+      system_default = system_default_sect
+      [system_default_sect]
+      Options = UnsafeLegacyRenegotiation
+      [system_default_sect]
+      CipherString = Default:@SECLEVEL=0
+    ''; 
 
   # Open ports in the firewall.
   networking.firewall = {

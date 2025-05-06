@@ -23,7 +23,7 @@
       system = "x86_64-linux";
     in
     {
-      nixosConfigurations."nixos" =
+      nixosConfigurations."codtop" =
         let
           specialArgs = inputs;
           modules = [
