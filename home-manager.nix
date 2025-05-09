@@ -111,6 +111,8 @@
 
     # Engineering Stuff
     kicad
+    wireshark
+    ciscoPacketTracer8
 
     # Media Viewer
     ffmpeg
@@ -238,36 +240,35 @@
 
   # Prefer dark theme for GNOME/GTK4+.
   dconf = {
-    settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
+    #  settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
   };
 
   gtk = {
-    enable = true;
-
-    iconTheme = {
-      name = "candy-icons";
-      package = pkgs.candy-icons;
-    };
-
-    theme = {
-      name = "Marble-yellow-dark";
-      package = pkgs.marble-shell-theme;
-    };
-
-    cursorTheme = {
-      name = "Qogir-ubuntu-dark";
-      package = pkgs.qogir-icon-theme;
-    };
-    gtk3.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1;
-      '';
-    };
-    gtk4.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1;
-      '';
-    };
+    #    enable = true;
+    #    iconTheme = {
+    #      name = "candy-icons";
+    #      package = pkgs.candy-icons;
+    #    };
+    #
+    #    theme = {
+    #      name = "Marble-yellow-dark";
+    #      package = pkgs.marble-shell-theme;
+    #    };
+    #
+    #    cursorTheme = {
+    #      name = "Qogir-ubuntu-dark";
+    #      package = pkgs.qogir-icon-theme;
+    #    };
+    #    gtk3.extraConfig = {
+    #      Settings = ''
+    #        gtk-application-prefer-dark-theme=1;
+    #      '';
+    #    };
+    #    gtk4.extraConfig = {
+    #      Settings = ''
+    #        gtk-application-prefer-dark-theme=1;
+    #      '';
+    #    };
   };
 
   # }

@@ -10,6 +10,11 @@
     };
 
     blink-cmp.url = "github:Saghen/blink.cmp";
+
+    #    nix-matlab = {
+    #      inputs.nixpkgs.follows = "nixpkgs";
+    #      url = "gitlab:doronbehar/nix-matlab";
+    #    }
   };
 
   outputs =
@@ -17,6 +22,7 @@
       self,
       home-manager,
       nixpkgs,
+      #  nix-matlab,
       ...
     }@inputs:
     let
