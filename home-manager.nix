@@ -52,9 +52,6 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
@@ -64,6 +61,10 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+
+    # Fonts
+    nerd-fonts.fantasque-sans-mono
+    nerd-fonts.symbols-only
 
     ## Tools
     rustup
@@ -81,6 +82,7 @@
     # (pkgs.citrix_workspace_23_09_0.overrideAttrs (
     #  final: old: { buildInputs = old.buildInputs ++ [ pkgs.webkitgtk ]; }
     # ))
+    arduino-ide
     appimage-run
     busybox
     darktable
@@ -134,14 +136,6 @@
 
     ## Libraries
     rnnoise-plugin
-
-    ## Theming
-    (nerdfonts.override {
-      fonts = [
-        "FantasqueSansMono"
-        "NerdFontsSymbolsOnly"
-      ];
-    })
 
     # Create an FHS environment using the command `fhs`, enabling the execution of non-NixOS packages in NixOS!
 
@@ -240,39 +234,38 @@
 
   # Prefer dark theme for GNOME/GTK4+.
   dconf = {
-    settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
+    #    settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
   };
-
+  #
   gtk = {
-    enable = true;
-
-    iconTheme = {
-      name = "candy-icons";
-      package = pkgs.candy-icons;
-    };
-
-    theme = {
-      name = "Marble-yellow-dark";
-      package = pkgs.marble-shell-theme;
-    };
-
-    cursorTheme = {
-      name = "Qogir-ubuntu-dark";
-      package = pkgs.qogir-icon-theme;
-    };
-    gtk3.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1;
-      '';
-    };
-    gtk4.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1;
-      '';
-    };
+    # enable = true;
+    #
+    #    iconTheme = {
+    #      name = "candy-icons";
+    #      package = pkgs.candy-icons;
+    #    };
+    #
+    #    theme = {
+    #      name = "Marble-yellow-dark";
+    #      package = pkgs.marble-shell-theme;
+    #    };
+    #
+    #    cursorTheme = {
+    #      name = "Qogir-ubuntu-dark";
+    #      package = pkgs.qogir-icon-theme;
+    #    };
+    #    gtk3.extraConfig = {
+    #      Settings = ''
+    #        gtk-application-prefer-dark-theme=1;
+    #      '';
+    #    };
+    #    gtk4.extraConfig = {
+    #      Settings = ''
+    #        gtk-application-prefer-dark-theme=1;
+    #      '';
+    #    };
   };
 
-  # }
   #
   ## MISC #
   #
