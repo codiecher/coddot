@@ -30,8 +30,9 @@
       global = "nvim ~/.system/nixos.nix";
       homeman = "nvim ~/.system/home-manager.nix";
       winvm = "quickemu --vm ~/winvm/windows-10.conf --display spice";
-      upd = "nh os switch -u";
+      upd = "rm /home/yozawa/.local/share/nvim/lazy/blink.cmp/target/release/libblink_cmp_fuzzy.so && nh os switch -u";
       touhou6 = "LANG=ja_JP.UTF-8 wine 'OneDrive/Touhou Series/Touhou 6 - The Embodiment of Scarlet Devil/th06.exe'";
+
     };
 
     functions = {

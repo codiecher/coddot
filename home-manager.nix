@@ -52,9 +52,6 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
@@ -64,6 +61,10 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+
+    # Fonts
+    nerd-fonts.fantasque-sans-mono
+    nerd-fonts.symbols-only
 
     ## Tools
     rustup
@@ -82,7 +83,6 @@
     #  final: old: { buildInputs = old.buildInputs ++ [ pkgs.webkitgtk ]; }
     # ))
     appimage-run
-    busybox
     darktable
     fastfetch
     firefox
@@ -101,6 +101,8 @@
     tauon
     teams-for-linux
     tigervnc
+    drawio
+    usbutils
     vulkan-tools
     vesktop
     pavucontrol
@@ -112,7 +114,14 @@
     # Engineering Stuff
     kicad
     wireshark
-    ciscoPacketTracer8
+    arduino-ide
+    #  ciscoPacketTracer8.overrideAttrs
+    #  (prev: {
+    #    src = fetchurl {
+    #      url = "file:///home/yozawa/ThinkINeedToKeepThis/Packet_Tracer822_amd64_signed.deb";
+    #      sha = "6cd2b8891df92d2cad8b6fdc47480fc089de085c4f3fe95eb80d5450a2a7f72d";
+    #    };
+    #  })
 
     # Media Viewer
     ffmpeg
@@ -134,14 +143,6 @@
 
     ## Libraries
     rnnoise-plugin
-
-    ## Theming
-    (nerdfonts.override {
-      fonts = [
-        "FantasqueSansMono"
-        "NerdFontsSymbolsOnly"
-      ];
-    })
 
     # Create an FHS environment using the command `fhs`, enabling the execution of non-NixOS packages in NixOS!
 
