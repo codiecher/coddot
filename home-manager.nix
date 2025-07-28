@@ -70,6 +70,10 @@
     rustup
     gh
     luajit
+    hplip
+    vscode
+    pico-sdk
+    picotool
 
     # GNOME Stuff
     gdm-settings
@@ -90,6 +94,7 @@
     gparted
     keepass
     menulibre
+    moonlight-qt
     obs-cmd
     obsidian
     protonvpn-gui
