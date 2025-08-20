@@ -66,7 +66,9 @@
     nerd-fonts.fantasque-sans-mono
     nerd-fonts.symbols-only
 
+    minicom
     ## Tools
+    avrdude
     rustup
     gh
     luajit
@@ -76,7 +78,6 @@
     picotool
 
     # GNOME Stuff
-    gdm-settings
     gnome-extension-manager
     gnome-tweaks
     gnome-screenshot
@@ -97,7 +98,6 @@
     moonlight-qt
     obs-cmd
     obsidian
-    protonvpn-gui
     python3
     pipx
     qbittorrent
@@ -111,6 +111,7 @@
     vulkan-tools
     vesktop
     pavucontrol
+    qalculate-qt
     xournalpp
     yazi
     yt-dlp
