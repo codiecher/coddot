@@ -69,7 +69,6 @@
     minicom
     ## Tools
     avrdude
-    rustup
     gh
     luajit
     hplip

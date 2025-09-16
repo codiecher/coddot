@@ -306,6 +306,7 @@
   };
 
   #Enable Onedrive
+
   services.onedrive.enable = true;
   # systemd.user.services."onedrive@".serviceConfig.RestartSec = lib.mkForce 3600;
   # Allow spice usb
