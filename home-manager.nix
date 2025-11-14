@@ -67,7 +67,9 @@
     nerd-fonts.symbols-only
 
     ## Tools
-    rustup
+    rustc
+    rustlings
+    cargo
     gh
     luajit
 
@@ -76,22 +78,24 @@
     gnome-extension-manager
     gnome-tweaks
     gnome-screenshot
-    zenity
 
     # Utilities
     # (pkgs.citrix_workspace_23_09_0.overrideAttrs (
     #  final: old: { buildInputs = old.buildInputs ++ [ pkgs.webkitgtk ]; }
     # ))
+    audacity
     arduino-ide
     appimage-run
     busybox
     darktable
+    drawio
     fastfetch
     firefox
     geekbench
     gparted
     keepass
     menulibre
+    moonlight-qt
     obs-cmd
     obsidian
     protonvpn-gui
@@ -112,6 +116,7 @@
     zerotierone
 
     # Engineering Stuff
+    cura-appimage
     kicad
 
     # Media Viewer
