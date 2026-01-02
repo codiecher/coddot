@@ -369,6 +369,7 @@
       noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
+      texlivePackages.nunito
     ];
 
     fontDir.enable = true;
