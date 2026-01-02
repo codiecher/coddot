@@ -11,10 +11,8 @@
 
     blink-cmp.url = "github:Saghen/blink.cmp";
 
-    #    nix-matlab = {
-    #      inputs.nixpkgs.follows = "nixpkgs";
-    #      url = "gitlab:doronbehar/nix-matlab";
-    #    }
+    stm32cubeide.url = "git+https://git.sr.ht/~shelvacu/stm32cubeide-nix";
+
   };
 
   outputs =
@@ -22,11 +20,13 @@
       self,
       home-manager,
       nixpkgs,
+      stm32cubeide,
       #  nix-matlab,
       ...
     }@inputs:
     let
       system = "x86_64-linux";
+
     in
     {
       nixosConfigurations."codtop" =

@@ -66,7 +66,7 @@
     nerd-fonts.fantasque-sans-mono
     nerd-fonts.symbols-only
 
-    minicom
+    minicom # for serial monitoring
     ## Tools
     avrdude
     gh
@@ -75,6 +75,10 @@
     vscode
     pico-sdk
     picotool
+    can-utils
+    savvycan
+    ethtool
+    cura-appimage
 
     # GNOME Stuff
     gnome-extension-manager
@@ -105,6 +109,7 @@
     tauon
     teams-for-linux
     tigervnc
+    onedriver
     drawio
     usbutils
     vulkan-tools

@@ -143,6 +143,7 @@
       "wheel"
       "gamemode"
       "dialout" # access for serial device
+      "wireshark"
     ];
 
     initialPassword = "yozawa";
@@ -332,6 +333,9 @@
 
   # Enable KDEConnect
   programs.kdeconnect.enable = true;
+
+  # Enable wireshark so groups can be managed automatically
+  programs.wireshark.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
