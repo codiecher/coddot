@@ -85,21 +85,54 @@
 
     enable = true;
 
+    extraCommands = ''
+    iptables -A INPUT -i p2p-+ -j ACCEPT
+    iptables -A OUTPUT -o p2p-+ -j ACCEPT
+  '';
+
     allowedTCPPorts = [
-      47984
-      47989
-      47990
-      48010
-      25565
+      47984 # sunshine
+      47989 # sunshine
+      47990 # sunshine
+      48010 # sunshine
+      445
+      139
+      7000 # airplay
+      7001 # airplay
+      7002 # airplay
+      7268 # network displays 
     ];
 
-    allowedUDPPorts = [ ];
+
+    allowedUDPPorts = [
+      137 
+      138 
+      6000 
+      6001 
+      7000 # airplay
+      7001 # airplay
+      7002 # airplay
+      7268 # network display
+      19000 # video streaming port
+    ];
 
     allowedTCPPortRanges = [
       {
         from = 1714;
         to = 1764;
       } # KDEConnect
+
+      {
+        from = 49152; 
+        to = 65535; 
+        # airplay
+      }
+
+      {
+        from = 5000;
+        to = 6000;
+        # Miracast
+      }
     ];
     allowedUDPPortRanges = [
       {
@@ -111,6 +144,17 @@
         from = 47998;
         to = 48000;
       }
+      # sunshine
+      {
+        from = 49152;
+        to = 65535;
+      }
+      # airplay
+      {
+        from = 5000;
+        to = 6000;
+      }
+      # miracast
     ];
   };
   # Or disable the firewall altogether.
@@ -208,11 +252,9 @@
 
   nixpkgs.config.permittedInsecurePackages = [ "qbittorrent-4.6.4" ];
   # Enable GNOME.
-  services.xserver = {
-    enable = true;
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
-  };
+  services.xserver.enable = true;
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
 
   # Enable Dconf
   programs.dconf.enable = true;
@@ -269,17 +311,17 @@
   # sound.enable = true;
   # hardware.pulseaudio.enable = false;
   # security.rtkit.enable = true;
-  # services.pipewire = {
-  #   enable = true;
-  #   audio.enable = true;
+  services.pipewire = {
+     enable = true;
+     audio.enable = true;
 
-  #   alsa.enable = true;
-  #   alsa.support32Bit = true;
+     alsa.enable = true;
+     alsa.support32Bit = true;
 
-  #   pulse.enable = true;
+     pulse.enable = true;
 
   #   #jack.enable = true;
-  # };
+  };
 
   ##
   ## PACKAGES ##
@@ -318,6 +360,22 @@
     enableRenice = true;
   };
 
+  services.samba = {
+    enable = true;
+    # This creates the share
+    settings = {
+      bigfiles = {
+          # path = "/home/yozawa/vmfuck";
+
+        browseable = "yes";
+        "read only" = "no"; # Safer for just transferring
+        "guest ok" = "yes";  # Simplest for local network; remove if you want password protection
+        #"public" = "yes";
+        #"force user" = "yozawa";
+      };
+  };
+};
+
   # Enable KDEConnect
   programs.kdeconnect.enable = true;
 
@@ -348,6 +406,14 @@
 
     ## Hardware specific
     via
+
+    ## Airplay
+    gst_all_1.gstreamer
+    gst_all_1.gst-plugins-base
+    gst_all_1.gst-plugins-good
+    gst_all_1.gst-plugins-bad  # Crucial for H.264/AAC
+    gst_all_1.gst-plugins-ugly # Sometimes needed for specific audio
+    gst_all_1.gst-libav
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

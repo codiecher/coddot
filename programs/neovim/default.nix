@@ -102,7 +102,7 @@ in
           # Nix
           deadnix
           nixd
-          nixfmt-rfc-style
+          #          nixfmt-rfc-style
           statix
 
           # Python

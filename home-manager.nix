@@ -84,6 +84,7 @@
     #  final: old: { buildInputs = old.buildInputs ++ [ pkgs.webkitgtk ]; }
     # ))
     audacity
+    audacious # new audio player
     arduino-ide
     appimage-run
     busybox
@@ -101,10 +102,11 @@
     protonvpn-gui
     python3
     pipx
+    picard # music tagger
     qbittorrent
     quickemu
     sunshine
-    tauon
+    # tauon # broken on 8.1.4
     teams-for-linux
     tigervnc
     vulkan-tools
@@ -118,6 +120,7 @@
     # Engineering Stuff
     cura-appimage
     kicad
+    wireshark
 
     # Media Viewer
     ffmpeg
@@ -129,7 +132,8 @@
     losslesscut-bin
 
     ## Entertainment
-    jellyfin-media-player
+    # jellyfin-media-player
+    uxplay
 
     # Gaming
     protontricks

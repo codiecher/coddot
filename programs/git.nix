@@ -5,27 +5,7 @@
   programs.git = {
     enable = true;
 
-    aliases = {
-      # List aliases
-      aliases = "config --get-regexp alias";
-
-      # List all the contributors with commit amount
-      contributors = "shortlog --summary --numbered";
-
-      # Output verbose info about branches and tags
-      branches = "branch -avv";
-
-      # List all tags
-      tags = "tag -l";
-
-      # Pretty logs
-      plog = "log --graph --decorate --all";
-
-      # Pretty grep
-      gcommit = "log --graph --decorate --grep";
-    };
-
-    extraConfig = {
+    settings = {
       core = {
         # Set the editor to be used by GIT
         editor = "nvim";
@@ -36,7 +16,28 @@
         # Treat trailing whitespaces and spaces before tabs as an error
         whitespace = "space-before-tab,-indent-with-non-tab,trailing-space";
       };
+      
+      alias = {
 
+        aliases = "config --get-regexp alias";
+
+        # List all the contributors with commit amount
+        contributors = "shortlog --summary --numbered";
+
+        # Output verbose info about branches and tags
+        branches = "branch -avv";
+
+        # List all tags
+        tags = "tag -l";
+
+        # Pretty logs
+        plog = "log --graph --decorate --all";
+
+        # Pretty grep
+        gcommit = "log --graph --decorate --grep";
+      };
+
+      
       color = {
         # Use colors in GIT commmands.
         ui = "auto";
