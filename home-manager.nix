@@ -8,6 +8,7 @@
   # Import configurations for better modularity.
   imports = [
     ./programs/fish
+    ./programs/vscode.nix
     ./programs/git.nix
     ./programs/mangohud.nix
     ./programs/neovim
@@ -72,7 +73,6 @@
     gh
     luajit
     hplip
-    vscode
     pico-sdk
     picotool
     can-utils
@@ -80,17 +80,28 @@
     ethtool
     cura-appimage
 
+    # Pico Development
+    pico-sdk
+    picotool
+    ninja
+    gcc-arm-embedded
+    cmake
+
     # GNOME Stuff
     gnome-extension-manager
     gnome-tweaks
     gnome-screenshot
     zenity
+    input-remapper
+    xorg.xmodmap
 
     # Utilities
     # (pkgs.citrix_workspace_23_09_0.overrideAttrs (
     #  final: old: { buildInputs = old.buildInputs ++ [ pkgs.webkitgtk ]; }
     # ))
     appimage-run
+    audacious
+    chromium
     darktable
     fastfetch
     firefox
@@ -106,7 +117,7 @@
     qbittorrent
     quickemu
     sunshine
-    tauon
+    # tauon
     teams-for-linux
     tigervnc
     onedriver
@@ -121,10 +132,13 @@
     yt-dlp
     zerotierone
 
-    # Engineering Stuff
+    ## Engineering Stuff
     kicad
     wireshark
+    arduino
     arduino-ide
+    nodejs
+    quartus-prime-lite
     #  ciscoPacketTracer8.overrideAttrs
     #  (prev: {
     #    src = fetchurl {
@@ -132,6 +146,9 @@
     #      sha = "6cd2b8891df92d2cad8b6fdc47480fc089de085c4f3fe95eb80d5450a2a7f72d";
     #    };
     #  })
+    stm32cubemx
+    pulseview
+    sigrok-cli
 
     # Media Viewer
     ffmpeg
@@ -143,7 +160,7 @@
     losslesscut-bin
 
     ## Entertainment
-    jellyfin-media-player
+    # jellyfin-media-player
 
     # Gaming
     protontricks
@@ -250,37 +267,37 @@
   #
 
   # Prefer dark theme for GNOME/GTK4+.
-  dconf = {
-    #  settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
-  };
+  #dconf = {
+  #  settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
+  #};
 
-  gtk = {
-    #    enable = true;
-    #    iconTheme = {
-    #      name = "candy-icons";
-    #      package = pkgs.candy-icons;
-    #    };
-    #
-    #    theme = {
-    #      name = "Marble-yellow-dark";
-    #      package = pkgs.marble-shell-theme;
-    #    };
-    #
-    #    cursorTheme = {
-    #      name = "Qogir-ubuntu-dark";
-    #      package = pkgs.qogir-icon-theme;
-    #    };
-    #    gtk3.extraConfig = {
-    #      Settings = ''
-    #        gtk-application-prefer-dark-theme=1;
-    #      '';
-    #    };
-    #    gtk4.extraConfig = {
-    #      Settings = ''
-    #        gtk-application-prefer-dark-theme=1;
-    #      '';
-    #    };
-  };
+  #gtk = {
+  #    enable = true;
+  #    iconTheme = {
+  #      name = "candy-icons";
+  #      package = pkgs.candy-icons;
+  #    };
+  #
+  #    theme = {
+  #      name = "Marble-yellow-dark";
+  #      package = pkgs.marble-shell-theme;
+  #    };
+  #
+  #    cursorTheme = {
+  #      name = "Qogir-ubuntu-dark";
+  #      package = pkgs.qogir-icon-theme;
+  #    };
+  #    gtk3.extraConfig = {
+  #      Settings = ''
+  #        gtk-application-prefer-dark-theme=1;
+  #      '';
+  #    };
+  #    gtk4.extraConfig = {
+  #      Settings = ''
+  #        gtk-application-prefer-dark-theme=1;
+  #      '';
+  #    };
+  #};
 
   # }
   #

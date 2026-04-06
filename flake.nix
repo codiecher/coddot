@@ -11,7 +11,9 @@
 
     blink-cmp.url = "github:Saghen/blink.cmp";
 
-    stm32cubeide.url = "git+https://git.sr.ht/~shelvacu/stm32cubeide-nix";
+    stm32cubeide = {
+      url = "github:fdnt7/stm32cubeide-nix";
+    };
 
   };
 
@@ -43,6 +45,17 @@
               home-manager.extraSpecialArgs = inputs;
               home-manager.users.yozawa = import ./home-manager.nix;
             }
+
+            stm32cubeide.nixosModules.default
+
+            (
+              { config, pkgs, ... }:
+              {
+                programs.stm32cubeide = {
+                  enable = true;
+                };
+              }
+            )
           ];
         in
         nixpkgs.lib.nixosSystem { inherit system specialArgs modules; };

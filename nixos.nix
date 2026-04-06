@@ -57,11 +57,15 @@
   # Add AMD drivers.
   boot.initrd.kernelModules = [
     "kvm-amd"
+    "soc_button_array"
+    "i2c_hid_acpi"
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+  boot.kernelPackages = pkgs.linuxPackages_latest; # pkgs.linuxPackages_zen;
 
   boot.extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
+
+  hardware.cpu.amd.updateMicrocode = true;
 
   # Bootloader.
   boot.loader = {
@@ -78,6 +82,7 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  # Lower wi-fi security cuz fuck eduroam?
   systemd.services.wpa_supplicant.environment.OPENSSL_CONF = pkgs.writeText "openssl.cnf" ''
     openssl_conf = openssl_init
     [openssl_init]
@@ -144,6 +149,8 @@
       "gamemode"
       "dialout" # access for serial device
       "wireshark"
+      "uinput"
+      "plugdev"
     ];
 
     initialPassword = "yozawa";
@@ -212,6 +219,20 @@
   # Enable fstrim for better ssd lifespan
   services.fstrim.enable = true;
 
+  # Adding udev rules for ODrive
+  services.udev.extraRules = ''
+    # ODrive tool rules
+    SUBSYSTEM=="usb", ATTR{idVendor}=="1209", ATTR{idProduct}=="0d32", MODE="0666"
+    SUBSYSTEM=="usb", ATTR{idVendor}=="1209", ATTR{idProduct}=="0d33", MODE="0666"
+
+    # Raspberry Pi Pico 2 (RP2350) BOOTSEL mode
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="000f", MODE="0666", TAG+="uaccess"
+    SUBSYSTEMS=="tty", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="000f", MODE="0666", TAG+="uaccess"
+
+    # Also include the original Pico (RP2040) just in case
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="0003", MODE="0666", TAG+="uaccess"
+  '';
+
   ##
   ## DESKTOP ##
   ##
@@ -220,11 +241,9 @@
 
   nixpkgs.config.permittedInsecurePackages = [ "qbittorrent-4.6.4" ];
   # Enable GNOME.
-  services.xserver = {
-    enable = true;
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
-  };
+  services.xserver.enable = true;
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
 
   # Enable Dconf
   programs.dconf.enable = true;
@@ -314,6 +333,8 @@
   virtualisation.spiceUSBRedirection.enable = true;
   services.spice-vdagentd.enable = true;
 
+  services.input-remapper.enable = true;
+
   # Enable fish system-wide to integrate with nixpkgs.
   programs.fish.enable = true;
 
@@ -364,6 +385,7 @@
 
     ## Hardware specific
     via
+
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -402,6 +424,7 @@
   services.udev.packages = with pkgs; [
     pkgs.via
     gnome-settings-daemon
+    pkgs.libsigrok
   ];
 
   i18n.inputMethod = {
@@ -428,4 +451,5 @@
     joinNetworks = [ "9e1948db633ca1da" ];
   };
 
+  hardware.sensor.iio.enable = true;
 }
