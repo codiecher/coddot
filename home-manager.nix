@@ -161,6 +161,7 @@
 
     ## Entertainment
     # jellyfin-media-player
+    uxplay
 
     # Gaming
     protontricks

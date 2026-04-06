@@ -101,14 +101,22 @@
     enable = true;
 
     allowedTCPPorts = [
-      47984
-      47989
-      47990
-      48010
-      25565
+      47984 # sunshine
+      47989 # sunshine
+      47990 # sunshine
+      48010 # sunshine
+      7000 # airplay
+      7001 # airplay
+      7002 # airplay
+      7268 # network display
     ];
 
-    allowedUDPPorts = [ ];
+    allowedUDPPorts = [
+      7000 # airplay
+      7001 # airplay
+      7002 # airplay
+      7268 # network display
+    ];
 
     allowedTCPPortRanges = [
       {
