@@ -130,51 +130,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-lib_2": {
-      "locked": {
-        "lastModified": 1754788789,
-        "narHash": "sha256-x2rJ+Ovzq0sCMpgfgGaaqgBSwY+LST+WbZ6TytnT9Rk=",
-        "owner": "nix-community",
-        "repo": "nixpkgs.lib",
-        "rev": "a73b9c743612e4244d865a2fdee11865283c04e6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "nixpkgs.lib",
-        "type": "github"
-      }
-    },
-    "nixpkgs-stable": {
-      "locked": {
-        "lastModified": 1755773640,
-        "narHash": "sha256-IvX+1Slzh9/eUJ9z2DCtP4ht09muQ+duZd/PhsarD6Y=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "12c01ab2feb32230a1e7427d64258213f27b2427",
-        "type": "github"
-      },
-      "original": {
-        "id": "nixpkgs",
-        "ref": "nixos-25.05-small",
-        "type": "indirect"
-      }
-    },
-    "nixpkgs-unstable": {
-      "locked": {
-        "lastModified": 1755776958,
-        "narHash": "sha256-Qt/y8So1Rg/1quo8LvkbqRU1+nU6Nt19ZjOcs5+aQMo=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "1a01d22c982fc69956c3dba087d6d22b32b5984b",
-        "type": "github"
-      },
-      "original": {
-        "id": "nixpkgs",
-        "ref": "nixos-unstable-small",
-        "type": "indirect"
-      }
-    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1775002709,
@@ -187,6 +142,22 @@
       "original": {
         "owner": "nixos",
         "ref": "nixos-25.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
+        "lastModified": 1766902085,
+        "narHash": "sha256-coBu0ONtFzlwwVBzmjacUQwj3G+lybcZ1oeNSQkgC0M=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "c0b0e0fddf73fd517c3471e546c0df87a42d53f4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -219,22 +190,20 @@
     "stm32cubeide": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "nixpkgs-lib": "nixpkgs-lib_2",
-        "nixpkgs-stable": "nixpkgs-stable",
-        "nixpkgs-unstable": "nixpkgs-unstable"
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1755811038,
-        "narHash": "sha256-xbx57nqFn8zC9oRuHI0RAIu0Az6Hs8S6yTweS9DIHew=",
-        "ref": "refs/heads/master",
-        "rev": "458ac9ec74efb836942ade2e2ac64f470e83ea11",
-        "revCount": 6,
-        "type": "git",
-        "url": "https://git.sr.ht/~shelvacu/stm32cubeide-nix"
+        "lastModified": 1767111029,
+        "narHash": "sha256-xgcPeNEnYHTWf2PLQkk7yCu6Y4HHkgVntuF7tQ+gvHs=",
+        "owner": "fdnt7",
+        "repo": "stm32cubeide-nix",
+        "rev": "cd9dcf1827ed659c919fb465cec856d9a8b76e76",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "https://git.sr.ht/~shelvacu/stm32cubeide-nix"
+        "owner": "fdnt7",
+        "repo": "stm32cubeide-nix",
+        "type": "github"
       }
     },
     "systems": {
