@@ -103,6 +103,7 @@
     python3
     pipx
     picard # music tagger
+    qalculate-qt
     qbittorrent
     quickemu
     sunshine
@@ -121,6 +122,7 @@
     cura-appimage
     kicad
     wireshark
+    quartus-prime-lite
 
     # Media Viewer
     ffmpeg
