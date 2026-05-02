@@ -229,16 +229,24 @@
 
   # Adding udev rules for ODrive
   services.udev.extraRules = ''
-    # ODrive tool rules
-    SUBSYSTEM=="usb", ATTR{idVendor}=="1209", ATTR{idProduct}=="0d32", MODE="0666"
-    SUBSYSTEM=="usb", ATTR{idVendor}=="1209", ATTR{idProduct}=="0d33", MODE="0666"
+        # ODrive tool rules
+        SUBSYSTEM=="usb", ATTR{idVendor}=="1209", ATTR{idProduct}=="0d32", MODE="0666"
+        SUBSYSTEM=="usb", ATTR{idVendor}=="1209", ATTR{idProduct}=="0d33", MODE="0666"
 
-    # Raspberry Pi Pico 2 (RP2350) BOOTSEL mode
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="000f", MODE="0666", TAG+="uaccess"
-    SUBSYSTEMS=="tty", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="000f", MODE="0666", TAG+="uaccess"
+        # Raspberry Pi Pico 2 (RP2350) BOOTSEL mode
+        SUBSYSTEMS=="usb", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="000f", MODE="0666", TAG+="uaccess"
+        SUBSYSTEMS=="tty", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="000f", MODE="0666", TAG+="uaccess"
 
-    # Also include the original Pico (RP2040) just in case
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="0003", MODE="0666", TAG+="uaccess"
+        # Pico (RP2040) BOOTSEL mode
+        SUBSYSTEMS=="usb", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="0003", MODE="0666", TAG+="uaccess"
+
+        # Altera USB-Blaster
+        SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6001", MODE="0666"
+        SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6002", MODE="0666"
+        SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6003", MODE="0666"
+
+        # Sigilent DMM
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="f4ec", ATTRS{idProduct}=="ee38", MODE="0666", TAG+="uaccess", ENV{ID_MM_DEVICE_IGNORE}="1"
   '';
 
   ##
@@ -374,7 +382,7 @@
     bat
     btop
     duf
-    fzf
+    # fzf
     killall
     lm_sensors
     ripgrep
@@ -403,6 +411,7 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
+
   ## FONTS #
 
   fonts = {

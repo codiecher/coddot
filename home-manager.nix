@@ -121,6 +121,7 @@
     teams-for-linux
     tigervnc
     onedriver
+    kdePackages.okular # PDF reader (E-Book use)
     drawio
     usbutils
     vulkan-tools
@@ -128,7 +129,6 @@
     pavucontrol
     qalculate-qt
     xournalpp
-    yazi
     yt-dlp
     zerotierone
 
@@ -162,6 +162,7 @@
     ## Entertainment
     # jellyfin-media-player
     uxplay
+    picard
 
     # Gaming
     protontricks
@@ -263,6 +264,16 @@
     ".local/share/scripts".source = ./scripts;
   };
 
+  # Shell programs
+  programs.fzf = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+
+  programs.yazi = {
+    enable = true;
+    settings.manager.show_hidden = true;
+  };
   #
   ## THEMING #
   #

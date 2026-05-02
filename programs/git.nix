@@ -5,27 +5,28 @@
   programs.git = {
     enable = true;
 
-    aliases = {
-      # List aliases
-      aliases = "config --get-regexp alias";
+    settings = {
+      alias = {
 
-      # List all the contributors with commit amount
-      contributors = "shortlog --summary --numbered";
+        # List aliases
+        aliases = "config --get-regexp alias";
 
-      # Output verbose info about branches and tags
-      branches = "branch -avv";
+        # List all the contributors with commit amount
+        contributors = "shortlog --summary --numbered";
 
-      # List all tags
-      tags = "tag -l";
+        # Output verbose info about branches and tags
+        branches = "branch -avv";
 
-      # Pretty logs
-      plog = "log --graph --decorate --all";
+        # List all tags
+        tags = "tag -l";
 
-      # Pretty grep
-      gcommit = "log --graph --decorate --grep";
-    };
+        # Pretty logs
+        plog = "log --graph --decorate --all";
 
-    extraConfig = {
+        # Pretty grep
+        gcommit = "log --graph --decorate --grep";
+      };
+
       core = {
         # Set the editor to be used by GIT
         editor = "nvim";
