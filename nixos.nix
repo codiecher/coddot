@@ -61,7 +61,29 @@
     "i2c_hid_acpi"
   ];
 
+  boot.extraModprobeConfig = ''
+    options uvcvideo quirks=0x480
+  '';
+
   boot.kernelPackages = pkgs.linuxPackages_latest; # pkgs.linuxPackages_zen;
+
+  # nixpkgs.overlays = [
+  #   (final: prev: {
+  #     linuxPackages_latest = prev.linuxPackages_latest.extend (
+  #       lfinal: lprev: {
+  #         kernel = lprev.kernel.overrideAttrs (oldAttrs: {
+  #           postPatch = (oldAttrs.postPatch or "") + ''
+  #             # 1. Add the variable definition near other module parameters
+  #             sed -i '/MODULE_PARM_DESC(quirks, "Forced device quirks");/a static int uvc_bandwidth_cap;\nmodule_param_named(bandwidth_cap, uvc_bandwidth_cap, int, 0644);\nMODULE_PARM_DESC(bandwidth_cap, "Forced bandwidth cap");' drivers/media/usb/uvc/uvc_video.c
+
+  #             # 2. Inject the override logic after the bandwidth is read
+  #             sed -i '/ctrl->dwMaxPayloadTransferSize = get_unaligned_le32(&data\[22\]);/a \\n\t\tif (uvc_bandwidth_cap > 0)\n\t\t\tctrl->dwMaxPayloadTransferSize = uvc_bandwidth_cap;' drivers/media/usb/uvc/uvc_video.c
+  #           '';
+  #         });
+  #       }
+  #     );
+  #   })
+  # ];
 
   boot.extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
 
@@ -109,6 +131,7 @@
       7001 # airplay
       7002 # airplay
       7268 # network display
+      8612 # uxplay
     ];
 
     allowedUDPPorts = [
@@ -116,6 +139,7 @@
       7001 # airplay
       7002 # airplay
       7268 # network display
+      8612 # uxplay
     ];
 
     allowedTCPPortRanges = [
@@ -312,21 +336,19 @@
   ## SOUND #
   ##
 
-  # Enable sound with pipewire.
-  # sound.enable = true;
   # hardware.pulseaudio.enable = false;
-  # security.rtkit.enable = true;
-  # services.pipewire = {
-  #   enable = true;
-  #   audio.enable = true;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    audio.enable = true;
 
-  #   alsa.enable = true;
-  #   alsa.support32Bit = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
 
-  #   pulse.enable = true;
+    pulse.enable = true;
 
-  #   #jack.enable = true;
-  # };
+    #   #jack.enable = true;
+  };
 
   ##
   ## PACKAGES ##
@@ -373,7 +395,6 @@
 
   # Enable wireshark so groups can be managed automatically
   programs.wireshark.enable = true;
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -381,6 +402,7 @@
     # Utilities
     bat
     btop
+    cloudflare-warp
     duf
     # fzf
     killall
@@ -389,6 +411,7 @@
     tree
     unrar
     unzip
+    v4l-utils
     wget
     wl-clipboard
     xclip
@@ -460,8 +483,25 @@
     source = "${pkgs.sunshine}/bin/sunshine";
   };
 
-  services.avahi.publish.enable = true;
-  services.avahi.publish.userServices = true;
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+
+    reflector = true;
+
+    allowInterfaces = [
+      "ztiv5hi6vz"
+      "enp6s0f0u1"
+      "wlp3s0"
+    ];
+
+    publish = {
+      enable = true;
+      addresses = true;
+      workstation = true;
+      userServices = true;
+    };
+  };
 
   services.zerotierone = {
     enable = true;
@@ -469,4 +509,7 @@
   };
 
   hardware.sensor.iio.enable = true;
+
+  systemd.packages = [ pkgs.cloudflare-warp ];
+  systemd.targets.multi-user.wants = [ "warp-svc.service" ];
 }

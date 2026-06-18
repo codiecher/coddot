@@ -93,8 +93,7 @@
     gnome-screenshot
     zenity
     input-remapper
-    xorg.xmodmap
-
+    xmodmap
     # Utilities
     # (pkgs.citrix_workspace_23_09_0.overrideAttrs (
     #  final: old: { buildInputs = old.buildInputs ++ [ pkgs.webkitgtk ]; }
@@ -112,8 +111,16 @@
     moonlight-qt
     obs-cmd
     obsidian
+    # (obsidian.overrideAttrs (oldAttrs: {
+    #   postInstall = (oldAttrs.postInstall or "") + ''
+    #     wrapProgram $out/bin/obsidian \
+    #       --add-flags "--disable-features=BlockInsecurePrivateNetworkRequests,IsolateOrigins,SitePerProcess"
+    #   '';
+    # }))
     python3
-    pipx
+    (pipx.overridePythonAttrs (old: {
+      doCheck = false;
+    }))
     qbittorrent
     quickemu
     sunshine
@@ -166,12 +173,12 @@
 
     # Gaming
     protontricks
-    wineWowPackages.stagingFull
+    wineWow64Packages.stagingFull
     winetricks
     prismlauncher
 
     ## Libraries
-    rnnoise-plugin
+    # rnnoise-plugin
 
     # Create an FHS environment using the command `fhs`, enabling the execution of non-NixOS packages in NixOS!
 
@@ -216,41 +223,41 @@
     ".config/gamemode.ini".source = ./programs/gamemode.ini;
 
     # Configure pipewire for microphone noise supression.
-    ".config/pipewire/pipewire.conf.d/99-input-denoising.conf".text = ''
-      context.modules = [
-        { name = libpipewire-module-filter-chain
-          args = {
-            node.description =  "Noise Canceling source"
-            media.name =  "Noise Canceling source"
-            filter.graph = {
-              nodes = [
-                {
-                  type = ladspa
-                  name = rnnoise
-                  plugin = ${pkgs.rnnoise-plugin}/lib/ladspa/librnnoise_ladspa.so
-                  label = noise_suppressor_mono
-                  control = {
-                    "VAD Threshold (%)" = 60.0
-                    "VAD Grace Period (ms)" = 175
-                    "Retroactive VAD Grace (ms)" = 50
-                  }
-                }
-              ]
-            }
-            capture.props = {
-              node.name =  "capture.rnnoise_source"
-              node.passive = true
-              audio.rate = 48000
-            }
-            playback.props = {
-              node.name =  "rnnoise_source"
-              media.class = Audio/Source
-              audio.rate = 48000
-            }
-          }
-        }
-      ]
-    '';
+    # ".config/pipewire/pipewire.conf.d/99-input-denoising.conf".text = ''
+    #   context.modules = [
+    #     { name = libpipewire-module-filter-chain
+    #       args = {
+    #         node.description =  "Noise Canceling source"
+    #         media.name =  "Noise Canceling source"
+    #         filter.graph = {
+    #           nodes = [
+    #             {
+    #               type = ladspa
+    #               name = rnnoise
+    #               plugin = ${pkgs.rnnoise-plugin}/lib/ladspa/librnnoise_ladspa.so
+    #               label = noise_suppressor_mono
+    #               control = {
+    #                 "VAD Threshold (%)" = 60.0
+    #                 "VAD Grace Period (ms)" = 175
+    #                 "Retroactive VAD Grace (ms)" = 50
+    #               }
+    #             }
+    #           ]
+    #         }
+    #         capture.props = {
+    #           node.name =  "capture.rnnoise_source"
+    #           node.passive = true
+    #           audio.rate = 48000
+    #         }
+    #         playback.props = {
+    #           node.name =  "rnnoise_source"
+    #           media.class = Audio/Source
+    #           audio.rate = 48000
+    #         }
+    #       }
+    #     }
+    #   ]
+    # '';
 
     # Configure DXVK
     ".config/dxvk.conf".text = ''
