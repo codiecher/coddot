@@ -60,6 +60,7 @@ in
       enable = true;
       withNodeJs = true;
       withPython3 = true;
+      withRuby = true;
 
       extraLuaConfig = builtins.readFile ./init.lua;
 

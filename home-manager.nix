@@ -86,14 +86,14 @@
     ninja
     gcc-arm-embedded
     cmake
+    screen
 
+    xmodmap
     # GNOME Stuff
     gnome-extension-manager
     gnome-tweaks
     gnome-screenshot
     zenity
-    input-remapper
-    xmodmap
     # Utilities
     # (pkgs.citrix_workspace_23_09_0.overrideAttrs (
     #  final: old: { buildInputs = old.buildInputs ++ [ pkgs.webkitgtk ]; }
@@ -123,6 +123,7 @@
     }))
     qbittorrent
     quickemu
+    r2modman
     sunshine
     # tauon
     teams-for-linux

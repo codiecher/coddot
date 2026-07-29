@@ -6,11 +6,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1781639697,
-        "narHash": "sha256-mZ7h8HewUqLbK4hTDB2eB9VUVJWQdGGPNViJ5vMLbMQ=",
+        "lastModified": 1785260583,
+        "narHash": "sha256-RR++ovSNqskKrXuytu54qWX8bhHdpo9IHTiGYVcaH8w=",
         "owner": "Saghen",
         "repo": "blink.cmp",
-        "rev": "39682a9c737920578cf68887c21eaa4ce3845c67",
+        "rev": "dbcf63b90b358f058637ea370202e3849013383b",
         "type": "github"
       },
       "original": {
@@ -65,11 +65,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1781319724,
-        "narHash": "sha256-ZGuxexEMo4Xv28KJ0dX/m/PHN4oZIOnxHZpNTyrvx4M=",
+        "lastModified": 1785119570,
+        "narHash": "sha256-Rgs2xKnGLFWQscxUaXX07oyZeuMDOHEbqDOsgliLFGM=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "8355f0a16b2dbb06a97959a918af5b239bbe05ae",
+        "rev": "d4fd24667c8cbef124bb70a20380cab75ec8474d",
         "type": "github"
       },
       "original": {
@@ -94,11 +94,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1781216227,
-        "narHash": "sha256-9mUW6gNwoN2SWc/l0fW4svPNOulXLl8ijqKyeSOGgJE=",
+        "lastModified": 1785133411,
+        "narHash": "sha256-Yjv0WEg39KRYS0rBdTbu6Fc/or/ihAKk13W9sQ6VWd0=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "a0374025a863d007d98e3297f6aa46cc3141c2f0",
+        "rev": "2f5a153c270b70cb0f8c11f46d96d6d3bc39f4e3",
         "type": "github"
       },
       "original": {
@@ -138,15 +138,15 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1767111029,
-        "narHash": "sha256-xgcPeNEnYHTWf2PLQkk7yCu6Y4HHkgVntuF7tQ+gvHs=",
-        "owner": "fdnt7",
+        "lastModified": 1785292242,
+        "narHash": "sha256-muDYtJncqXgqjVQ09etrQDZOUK9yMnoS/YI2/Mja41A=",
+        "owner": "codiecher",
         "repo": "stm32cubeide-nix",
-        "rev": "cd9dcf1827ed659c919fb465cec856d9a8b76e76",
+        "rev": "e918fe3ce015d25f2f76a217dd2ef35c882afeee",
         "type": "github"
       },
       "original": {
-        "owner": "fdnt7",
+        "owner": "codiecher",
         "repo": "stm32cubeide-nix",
         "type": "github"
       }
