@@ -62,7 +62,7 @@ in
       withPython3 = true;
       withRuby = true;
 
-      extraLuaConfig = builtins.readFile ./init.lua;
+      initLua = builtins.readFile ./init.lua;
 
       extraPackages =
         with pkgs;
