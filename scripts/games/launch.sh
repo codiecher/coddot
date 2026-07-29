@@ -6,4 +6,6 @@ export MANGOHUD=1
 export MESA_NO_DITHER=1         # Disables dither
 export MESA_BACK_BUFFER=pixmap  # For X only
 
+export PROTON_NO_WM_DECORATION=1 
+
 gamemoderun "$@"

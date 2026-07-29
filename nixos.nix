@@ -6,6 +6,7 @@
   config,
   pkgs,
   lib,
+  stm32cubeide,
   ...
 }:
 
@@ -17,6 +18,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    stm32cubeide.nixosModules.default
   ];
 
   # Enable experimental features
@@ -252,11 +254,8 @@
 
   nixpkgs.config.permittedInsecurePackages = [ "qbittorrent-4.6.4" ];
   # Enable GNOME.
-  services.xserver = {
-    enable = true;
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
-  };
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
 
   # Enable Dconf
   programs.dconf.enable = true;
@@ -288,10 +287,11 @@
 
   # Automount
 
-  #fileSystems."/run/media/yozawa" = {
-  #  device = "/dev/disk/by-uuid/55BC3509-C81F-4986-BA58-59F450E22867";
-  #  fsType = "ntfs";
-  #};
+  fileSystems."/run/media/yozawa/NV2" = {
+    device = "/dev/disk/by-uuid/647046544DE70FF5";
+    fsType = "ntfs";
+    options = [ "nofail" "x-systemd.automount" "noauto" "uid=1000" "gid=1000" "rw" "user" "exec" "umask=000" ];
+  };
 
   ##
   ## INPUT ##
@@ -388,10 +388,12 @@
     # Utilities
     bat
     btop
+    cloudflare-warp
     duf
     fzf
     killall
     lm_sensors
+    openrgb
     ripgrep
     tree
     unrar
@@ -425,6 +427,11 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
+
+  programs.stm32cubeide = {
+    enable = true;
+  };
+
   ## FONTS #
 
   fonts = {
@@ -457,6 +464,10 @@
     gnome-settings-daemon
   ];
 
+  services.udev.extraRules = ''
+    ACTION=="add|change", SUBSYSTEM=="powercap", ATTR{name}=="intel-rapl*", RUN+="${pkgs.coreutils}/bin/chmod -R o+r /sys/class/powercap/intel-rapl*"
+  '';
+
   i18n.inputMethod = {
     enable = true;
     type = "ibus";
@@ -480,5 +491,10 @@
     enable = true;
     joinNetworks = [ "9e1948db633ca1da" ];
   };
+
+  services.hardware.openrgb.enable = true;
+
+  systemd.packages = [ pkgs.cloudflare-warp ];
+  systemd.targets.multi-user.wants = [ "warp-svc.service" ];
 
 }

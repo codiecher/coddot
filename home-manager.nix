@@ -88,6 +88,7 @@
     arduino-ide
     appimage-run
     busybox
+    calibre
     darktable
     drawio
     fastfetch
@@ -99,9 +100,11 @@
     moonlight-qt
     obs-cmd
     obsidian
-    protonvpn-gui
+    proton-vpn
     python3
-    pipx
+    (pipx.overridePythonAttrs (old: {
+      doCheck = false;
+    }))
     picard # music tagger
     qalculate-qt
     qbittorrent
@@ -123,6 +126,7 @@
     kicad
     wireshark
     quartus-prime-lite
+    stm32cubemx
 
     # Media Viewer
     ffmpeg
@@ -139,7 +143,7 @@
 
     # Gaming
     protontricks
-    wineWowPackages.stagingFull
+    wineWow64Packages.stagingFull
     winetricks
     prismlauncher
     r2modman
@@ -185,47 +189,47 @@
   # plain files is through 'home.file'.
   home.file = {
     # Cattpuccin theme for fish shell.
-    ".config/fish/themes/Catppuccin-Frappe.theme".source = ./programs/fish/Catppuccin-Frappe.theme;
+    ".config/fish/themes/Gruvbox-Orange.theme".source = ./programs/fish/Gruvbox-Orange.theme;
 
     # Configuration for gamemode, for running games with optimizations.
     ".config/gamemode.ini".source = ./programs/gamemode.ini;
 
     # Configure pipewire for microphone noise supression.
-    ".config/pipewire/pipewire.conf.d/99-input-denoising.conf".text = ''
-      context.modules = [
-        { name = libpipewire-module-filter-chain
-          args = {
-            node.description =  "Noise Canceling source"
-            media.name =  "Noise Canceling source"
-            filter.graph = {
-              nodes = [
-                {
-                  type = ladspa
-                  name = rnnoise
-                  plugin = ${pkgs.rnnoise-plugin}/lib/ladspa/librnnoise_ladspa.so
-                  label = noise_suppressor_mono
-                  control = {
-                    "VAD Threshold (%)" = 60.0
-                    "VAD Grace Period (ms)" = 175
-                    "Retroactive VAD Grace (ms)" = 50
-                  }
-                }
-              ]
-            }
-            capture.props = {
-              node.name =  "capture.rnnoise_source"
-              node.passive = true
-              audio.rate = 48000
-            }
-            playback.props = {
-              node.name =  "rnnoise_source"
-              media.class = Audio/Source
-              audio.rate = 48000
-            }
-          }
-        }
-      ]
-    '';
+    # ".config/pipewire/pipewire.conf.d/99-input-denoising.conf".text = ''
+    #   context.modules = [
+    #     { name = libpipewire-module-filter-chain
+    #       args = {
+    #         node.description =  "Noise Canceling source"
+    #         media.name =  "Noise Canceling source"
+    #         filter.graph = {
+    #           nodes = [
+    #             {
+    #               type = ladspa
+    #               name = rnnoise
+    #               plugin = ${pkgs.rnnoise-plugin}/lib/ladspa/librnnoise_ladspa.so
+    #               label = noise_suppressor_mono
+    #               control = {
+    #                 "VAD Threshold (%)" = 60.0
+    #                 "VAD Grace Period (ms)" = 175
+    #                 "Retroactive VAD Grace (ms)" = 50
+    #               }
+    #             }
+    #           ]
+    #         }
+    #         capture.props = {
+    #           node.name =  "capture.rnnoise_source"
+    #           node.passive = true
+    #           audio.rate = 48000
+    #         }
+    #         playback.props = {
+    #           node.name =  "rnnoise_source"
+    #           media.class = Audio/Source
+    #           audio.rate = 48000
+    #         }
+    #       }
+    #     }
+    #   ]
+    # '';
 
     # Configure DXVK
     ".config/dxvk.conf".text = ''

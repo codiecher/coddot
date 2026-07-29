@@ -61,8 +61,9 @@ in
       enable = true;
       withNodeJs = true;
       withPython3 = true;
+      withRuby = true;
 
-      extraLuaConfig = builtins.readFile ./init.lua;
+      initLua = builtins.readFile ./init.lua;
 
       extraPackages =
         with pkgs;
@@ -127,6 +128,9 @@ in
 
           # YAML
           yaml-language-server
+
+          # Blink
+          blink-cmp
         ]
         ++ pkgs.lib.optionals config.programs.neovim.ollama.enable [
           # Needed by ollama.nvim
@@ -140,9 +144,10 @@ in
       source = ./lua;
     };
 
-    xdg.dataFile."nvim/lazy/blink.cmp/target/release/libblink_cmp_fuzzy.so" = {
-      recursive = true;
-      source = "${blink-cmp.packages.x86_64-linux.blink-fuzzy-lib}/lib/libblink_cmp_fuzzy.so";
-    };
+    #    xdg.dataFile."nvim/lazy/blink.cmp/target/release/libblink_cmp_fuzzy.so" = {
+    #      recursive = true;
+    #      source = "${blink-cmp.packages.x86_64-linux.blink-fuzzy-lib}/lib/libblink_cmp_fuzzy.so";
+    #    };
   };
+
 }

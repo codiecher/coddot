@@ -6,7 +6,7 @@
 
     settings = {
       # Limitations
-      fps_limit = 165;
+      fps_limit = 170;
       vsync = 1;
       gl_vsync = 0;
 
